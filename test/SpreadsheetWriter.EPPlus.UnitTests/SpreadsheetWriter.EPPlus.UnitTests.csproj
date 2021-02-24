@@ -24,4 +24,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SpreadsheetWriter.Abstractions\SpreadsheetWriter.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\SpreadsheetWriter.EPPlus\SpreadsheetWriter.EPPlus.csproj" />
+  </ItemGroup>
+
 </Project>
