@@ -16,6 +16,6 @@ namespace SpreadsheetWriter.Abstractions.File
         /// <summary>
         /// Saves the spreadsheet.
         /// </summary>
-        Task SaveAsync();
+        Task<SaveResult> SaveAsync();
     }
 }
