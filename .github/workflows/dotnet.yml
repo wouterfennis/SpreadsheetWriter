@@ -2,12 +2,12 @@ name: Build spreadsheet writer
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ main ]
     paths:
     - 'src/**'
     - 'test/**'
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -31,4 +31,3 @@ jobs:
       with:
         name: dotnet-results-${{ GITHUB_RUN_ID }}
         path: TestResults-${{ GITHUB_RUN_ID }}
-        if: ${{ always() }}
