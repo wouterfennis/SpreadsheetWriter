@@ -1,13 +1,13 @@
-name: .NET
+name: Build spreadsheet writer
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
     paths:
     - 'src/**'
     - 'test/**'
   pull_request:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs:
   build:
@@ -25,11 +25,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test with dotnet
-      run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      run: dotnet test --logger trx --results-directory "TestResults-${{ GITHUB_RUN_ID }}"
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v2
       with:
-        name: dotnet-results-${{ matrix.dotnet-version }}
-        path: TestResults-${{ matrix.dotnet-version }}
-        # Use always() to always run this step to publish test results when there are test failures
+        name: dotnet-results-${{ GITHUB_RUN_ID }}
+        path: TestResults-${{ GITHUB_RUN_ID }}
         if: ${{ always() }}
