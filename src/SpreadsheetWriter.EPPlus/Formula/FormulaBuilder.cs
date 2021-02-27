@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using SpreadsheetWriter.Abstractions.Formula;
 
@@ -18,7 +19,6 @@ namespace SpreadsheetWriter.EPPlus.Formula
         public IFormulaBuilder AddCellAddress(string cellAddress)
         {
             _ = cellAddress ?? throw new ArgumentNullException(nameof(cellAddress));
-
             _stringBuilder.Append(cellAddress);
             return this;
         }
