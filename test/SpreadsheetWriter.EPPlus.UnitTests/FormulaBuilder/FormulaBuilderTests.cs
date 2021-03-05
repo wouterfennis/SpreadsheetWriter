@@ -145,6 +145,20 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Formula
         }
 
         [TestMethod]
+        public void AddConstantSign_WithoutPreviousActions_AddsConstantSignToFormula()
+        {
+            // Arrange
+            var expectedFormula = "$";
+
+            // Act
+            IFormulaBuilder result = _formulaBuilder.AddConstantSign();
+
+            // Assert
+            var formula = result.Build();
+            formula.Should().Be(expectedFormula);
+        }
+
+        [TestMethod]
         public void Build_WithoutPreviousActions_ReturnsEmptyString()
         {
             // Arrange

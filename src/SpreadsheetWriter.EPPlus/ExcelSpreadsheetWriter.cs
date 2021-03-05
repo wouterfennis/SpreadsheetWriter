@@ -54,8 +54,9 @@ namespace SpreadsheetWriter.EPPlus
         {
             CurrentCell.SetBackgroundColor(CurrentBackgroundColor);
             CurrentCell.SetFontColor(CurrentFontColor);
-            CurrentCell.Style.TextRotation = CurrentTextRotation;
+            CurrentCell.SetTextRotation(CurrentTextRotation);
             CurrentCell.SetFontSize(CurrentFontSize);
+            CurrentCell.SetFormat(CurrentFormat);
         }
 
         /// <inheritdoc/>

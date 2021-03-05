@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using OfficeOpenXml;
-
+using SpreadsheetWriter.Abstractions.Styling;
 
 namespace SpreadsheetWriter.EPPlus.Extensions
 {
@@ -19,6 +19,46 @@ namespace SpreadsheetWriter.EPPlus.Extensions
 
             excelRange.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
             excelRange.Style.Fill.BackgroundColor.SetColor(color);
+        }
+
+        /// <summary>
+        /// Set the border of an <see cref="ExcelRange"/>.
+        /// </summary>
+        public static void SetBorder(this ExcelRange excelRange, BorderDirection borderDirection, BorderStyle borderStyle)
+        {
+            _ = excelRange?.Style?.Border ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
+
+            switch (borderDirection)
+            {
+                case BorderDirection.Left:
+                    excelRange.Style.Border.Left.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    break;
+                case BorderDirection.Right:
+                    excelRange.Style.Border.Right.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+
+                    break;
+                case BorderDirection.Top:
+                    excelRange.Style.Border.Top.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    break;
+                case BorderDirection.Bottom:
+                    excelRange.Style.Border.Bottom.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    break;
+                case BorderDirection.Diagonal:
+                    excelRange.Style.Border.Diagonal.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    break;
+                case BorderDirection.DiagonalUp:
+                    excelRange.Style.Border.Diagonal.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.DiagonalUp = true;
+                    break;
+                case BorderDirection.DiagonalDown:
+                    excelRange.Style.Border.Diagonal.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.DiagonalDown = true;
+                    break;
+                default:
+                    var exception = new InvalidOperationException(ExceptionMessages.UnknownBorderDirection);
+                    exception.Data.Add(nameof(borderDirection), borderDirection);
+                    throw exception;
+            }
         }
 
         /// <summary>
@@ -42,14 +82,23 @@ namespace SpreadsheetWriter.EPPlus.Extensions
         }
 
         /// <summary>
-        /// Converts the cell type to Euro (€) of an <see cref="ExcelRange"/>.
+        /// Set the text rotation size of an <see cref="ExcelRange"/>.
         /// </summary>
-        public static void ConvertToEuro(this ExcelRange excelRange)
+        public static void SetTextRotation(this ExcelRange excelRange, int rotation)
+        {
+            _ = excelRange?.Style ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
+
+            excelRange.Style.TextRotation = rotation;
+        }
+
+        /// <summary>
+        /// Set the format of an <see cref="ExcelRange"/>.
+        /// </summary>
+        public static void SetFormat(this ExcelRange excelRange, string format)
         {
             _ = excelRange?.Style?.Numberformat ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
 
-            excelRange.Style.Numberformat.Format = "€#,##0.00";
-            excelRange.Value = 0;
+            excelRange.Style.Numberformat.Format = format;
         }
     }
 }

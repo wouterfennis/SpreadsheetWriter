@@ -11,6 +11,7 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <Authors>Wouter Fennis</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>

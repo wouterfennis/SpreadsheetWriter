@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using OfficeOpenXml;
 using SpreadsheetWriter.Abstractions;
@@ -32,9 +33,25 @@ namespace SpreadsheetWriter.EPPlus.File
         }
 
         /// <inheritdoc/>
-        public async Task SaveAsync()
+        public async Task<SaveResult> SaveAsync()
         {
-            await _excelPackage.SaveAsync();
+            Exception exceptionDuringSave = null;
+            bool isSuccess = false;
+            try
+            {
+                await _excelPackage.SaveAsync();
+                isSuccess = true;
+            }
+            catch (Exception exception)
+            {
+                exceptionDuringSave = exception;
+            }
+
+            return new SaveResult
+            {
+                IsSuccess = isSuccess,
+                Exception = exceptionDuringSave
+            };
         }
 
         /// <inheritdoc/>

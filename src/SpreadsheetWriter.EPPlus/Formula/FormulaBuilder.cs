@@ -73,6 +73,13 @@ namespace SpreadsheetWriter.EPPlus.Formula
         }
 
         /// <inheritdoc/>
+        public IFormulaBuilder AddConstantSign()
+        {
+            _stringBuilder.Append("$");
+            return this;
+        }
+
+        /// <inheritdoc/>
         public string Build()
         {
             return _stringBuilder.ToString();

@@ -6,17 +6,20 @@ namespace SpreadsheetWriter.Abstractions
     /// <inheritdoc/>
     public abstract class SpreadsheetWriterBase : ISpreadsheetWriter
     {
+        private const int DefaultTextRotation = 0;
+        private const float DefaultFontSize = 11;
+        private const string DefaultFormat = "";
         private readonly Color DefaultBackgroundColor = Color.White;
         private readonly Color DefaultFontColor = Color.Black;
-        private readonly int DefaultTextRotation = 0;
-        private readonly float DefaultFontSize = 11;
         private readonly int DefaultXPosition;
         private readonly int DefaultYPosition;
+
         protected Color CurrentBackgroundColor;
         protected Color CurrentFontColor;
         protected float CurrentFontSize;
         protected int CurrentTextRotation;
-        
+        protected string CurrentFormat;
+
         /// <summary>
         /// The position of the current selected Cell
         /// </summary>
@@ -27,7 +30,6 @@ namespace SpreadsheetWriter.Abstractions
             DefaultXPosition = defaultXPosition;
             DefaultYPosition = defaultYPosition;
             CurrentPosition = new Point(DefaultXPosition, DefaultYPosition);
-            CurrentBackgroundColor = Color.White;
         }
 
         /// <inheritdoc/>
@@ -130,6 +132,13 @@ namespace SpreadsheetWriter.Abstractions
         }
 
         /// <inheritdoc/>
+        public ISpreadsheetWriter SetFormat(string format)
+        {
+            CurrentFormat = format;
+            return this;
+        }
+
+        /// <inheritdoc/>
         public ISpreadsheetWriter NewLine()
         {
             CurrentPosition = new Point(DefaultXPosition, CurrentPosition.Y + 1);
@@ -143,6 +152,7 @@ namespace SpreadsheetWriter.Abstractions
             CurrentFontColor = DefaultFontColor;
             CurrentTextRotation = DefaultTextRotation;
             CurrentFontSize = DefaultFontSize;
+            CurrentFormat = DefaultFormat;
 
             return this;
         }

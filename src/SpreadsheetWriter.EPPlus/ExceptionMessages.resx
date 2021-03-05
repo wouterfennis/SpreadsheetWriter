@@ -123,4 +123,7 @@
   <data name="ExcelWorksheetNull" xml:space="preserve">
     <value>ExcelWorksheet and/or its properties are null</value>
   </data>
+  <data name="UnknownBorderDirection" xml:space="preserve">
+    <value>The BorderDirection is unknown</value>
+  </data>
 </root>

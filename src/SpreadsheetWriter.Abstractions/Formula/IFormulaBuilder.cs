@@ -43,8 +43,12 @@
         /// <summary>
         /// Add equals sign to the formula.
         /// </summary>
-        /// <returns></returns>
         IFormulaBuilder AddEqualsSign();
+
+        /// <summary>
+        /// Add constant sign to the formula.
+        /// </summary>
+        IFormulaBuilder AddConstantSign();
 
         /// <summary>
         /// Build the formula

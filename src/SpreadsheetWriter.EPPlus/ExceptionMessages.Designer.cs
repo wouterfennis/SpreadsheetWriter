@@ -77,5 +77,14 @@ namespace SpreadsheetWriter.EPPlus {
                 return ResourceManager.GetString("ExcelWorksheetNull", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The BorderDirection is unknown.
+        /// </summary>
+        internal static string UnknownBorderDirection {
+            get {
+                return ResourceManager.GetString("UnknownBorderDirection", resourceCulture);
+            }
+        }
     }
 }

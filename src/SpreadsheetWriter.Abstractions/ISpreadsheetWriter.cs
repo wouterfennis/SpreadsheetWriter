@@ -79,6 +79,11 @@ namespace SpreadsheetWriter.Abstractions
         ISpreadsheetWriter SetTextRotation(int rotation);
 
         /// <summary>
+        /// Set the format for future inserts to a specified format/>.
+        /// </summary>
+        ISpreadsheetWriter SetFormat(string format);
+
+        /// <summary>
         /// Move the current selected cell to the start of one row below.
         /// </summary>
         ISpreadsheetWriter NewLine();
