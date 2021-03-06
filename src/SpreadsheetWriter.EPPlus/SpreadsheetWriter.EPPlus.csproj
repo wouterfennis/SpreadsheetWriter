@@ -11,11 +11,12 @@
 		<PackageTags>Spreadsheet, Excel, Openoffice, EPPlus</PackageTags>
 		<PackageReleaseNotes>Initial version</PackageReleaseNotes>
 		<NeutralLanguage>en-US</NeutralLanguage>
+		<Version>1.0.4</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="EPPlus" Version="5.5.5" />
-		<PackageReference Include="SpreadsheetWriter.Abstractions" Version="1.0.3" />
+		<PackageReference Include="SpreadsheetWriter.Abstractions" Version="1.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>

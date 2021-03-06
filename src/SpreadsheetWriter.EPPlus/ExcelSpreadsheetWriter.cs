@@ -56,6 +56,7 @@ namespace SpreadsheetWriter.EPPlus
             CurrentCell.SetFontColor(CurrentFontColor);
             CurrentCell.SetTextRotation(CurrentTextRotation);
             CurrentCell.SetFontSize(CurrentFontSize);
+            CurrentCell.SetFontBold(IsCurrentFontBold);
             CurrentCell.SetFormat(CurrentFormat);
         }
 

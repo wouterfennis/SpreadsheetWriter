@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoFixture;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
@@ -9,6 +10,14 @@ namespace SpreadsheetWriter.EPPlus.UnitTests
     [TestClass]
     public class ExcelRangeWrapperTests
     {
+        private Fixture _fixture;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _fixture = new Fixture();
+        }
+
         [TestMethod]
         public void Constructor_WithoutExcelRange_ThrowsException()
         {
@@ -34,6 +43,22 @@ namespace SpreadsheetWriter.EPPlus.UnitTests
 
             // Assert
             result.Should().Be(excelRange.Address);
+        }
+
+        [TestMethod]
+        public void Value_WithValidExcelRange_ReturnsValueOfExcelRange()
+        {
+            // Arrange
+            var expectedValue = _fixture.Create<string>();
+            var excelRange = ExcelTestBuilder.CreateExcelRange();
+            excelRange.Value = expectedValue;
+            var sut = new ExcelRangeWrapper(excelRange);
+
+            // Act
+            string result = sut.Value;
+
+            // Assert
+            result.Should().Be((string)excelRange.Value);
         }
     }
 }

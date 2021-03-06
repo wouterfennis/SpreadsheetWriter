@@ -147,5 +147,33 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
             excelRange.Style.Border.Diagonal.Style.Should().Be((ExcelBorderStyle)expectedBorderStyle);
             excelRange.Style.Border.DiagonalUp.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void SetFontBold_WithActive_SetsBoldStyle()
+        {
+            // Arrange
+            bool expectedToBeBold = true;
+            ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
+
+            // Act
+            excelRange.SetFontBold(expectedToBeBold);
+
+            // Assert
+            excelRange.Style.Font.Bold.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void SetFontBold_WithInactive_SetsBoldStyle()
+        {
+            // Arrange
+            bool expectedToBeBold = false;
+            ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
+
+            // Act
+            excelRange.SetFontBold(expectedToBeBold);
+
+            // Assert
+            excelRange.Style.Font.Bold.Should().BeFalse();
+        }
     }
 }

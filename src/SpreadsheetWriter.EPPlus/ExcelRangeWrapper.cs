@@ -16,5 +16,8 @@ namespace SpreadsheetWriter.EPPlus
 
         /// <inheritdoc/>
         public string Address => _excelRange.Address;
+
+        /// <inheritdoc/>
+        public string Value => (string)_excelRange.Value;
     }
 }

@@ -8,6 +8,7 @@ namespace SpreadsheetWriter.Abstractions
     {
         private const int DefaultTextRotation = 0;
         private const float DefaultFontSize = 11;
+        private const bool DefaultIsFontBold = false;
         private const string DefaultFormat = "";
         private readonly Color DefaultBackgroundColor = Color.White;
         private readonly Color DefaultFontColor = Color.Black;
@@ -17,6 +18,7 @@ namespace SpreadsheetWriter.Abstractions
         protected Color CurrentBackgroundColor;
         protected Color CurrentFontColor;
         protected float CurrentFontSize;
+        protected bool IsCurrentFontBold;
         protected int CurrentTextRotation;
         protected string CurrentFormat;
 
@@ -132,6 +134,13 @@ namespace SpreadsheetWriter.Abstractions
         }
 
         /// <inheritdoc/>
+        public ISpreadsheetWriter SetFontBold(bool isActive)
+        {
+            IsCurrentFontBold = isActive;
+            return this;
+        }
+
+        /// <inheritdoc/>
         public ISpreadsheetWriter SetFormat(string format)
         {
             CurrentFormat = format;
@@ -152,6 +161,7 @@ namespace SpreadsheetWriter.Abstractions
             CurrentFontColor = DefaultFontColor;
             CurrentTextRotation = DefaultTextRotation;
             CurrentFontSize = DefaultFontSize;
+            IsCurrentFontBold = DefaultIsFontBold;
             CurrentFormat = DefaultFormat;
 
             return this;

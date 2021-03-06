@@ -69,17 +69,22 @@ namespace SpreadsheetWriter.Abstractions
         ISpreadsheetWriter SetFontColor(Color color);
 
         /// <summary>
-        /// Set the font size for future inserts to a specified size/>.
+        /// Set the font size for future inserts to a specified size.
         /// </summary>
         ISpreadsheetWriter SetFontSize(float size);
 
         /// <summary>
-        /// Set the text rotation for future inserts to a specified rotation/>.
+        /// Set the font bold for future inserts to a specified size.
+        /// </summary>
+        ISpreadsheetWriter SetFontBold(bool isActive);
+
+        /// <summary>
+        /// Set the text rotation for future inserts to a specified rotation.
         /// </summary>
         ISpreadsheetWriter SetTextRotation(int rotation);
 
         /// <summary>
-        /// Set the format for future inserts to a specified format/>.
+        /// Set the format for future inserts to a specified format.
         /// </summary>
         ISpreadsheetWriter SetFormat(string format);
 

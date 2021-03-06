@@ -10,5 +10,10 @@ namespace SpreadsheetWriter.Abstractions
         /// The address of the cell range.
         /// </summary>
         string Address { get; }
+
+        /// <summary>
+        /// The value of the cellRange
+        /// </summary>
+        string Value { get; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using AutoFixture;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
@@ -11,14 +10,6 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
     [TestClass]
     public class ExcelWorksheetExtensionsTests
     {
-        private Fixture _fixture;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            _fixture = new Fixture();
-        }
-
         [TestMethod]
         public void GetCell_WithExcelRangeNull_ThrowsException()
         {

@@ -82,6 +82,16 @@ namespace SpreadsheetWriter.EPPlus.Extensions
         }
 
         /// <summary>
+        /// Set the font bold of an <see cref="ExcelRange"/>.
+        /// </summary>
+        public static void SetFontBold(this ExcelRange excelRange, bool isActive)
+        {
+            _ = excelRange?.Style?.Font ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
+
+            excelRange.Style.Font.Bold = isActive;
+        }
+
+        /// <summary>
         /// Set the text rotation size of an <see cref="ExcelRange"/>.
         /// </summary>
         public static void SetTextRotation(this ExcelRange excelRange, int rotation)

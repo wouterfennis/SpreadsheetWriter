@@ -1,20 +1,13 @@
-﻿using System;
-using System.Drawing;
-using AutoFixture;
+﻿using AutoFixture;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using OfficeOpenXml;
-using SpreadsheetWriter.Abstractions;
-using SpreadsheetWriter.Abstractions.Formula;
-using SpreadsheetWriter.EPPlus.Extensions;
 using SpreadsheetWriter.EPPlus.UnitTests.Builders;
-using SpreadsheetWriter.EPPlus.UnitTests.Utilities;
 
-namespace SpreadsheetWriter.EPPlus.UnitTests
+namespace SpreadsheetWriter.EPPlus.UnitTests.ExcelSpreadsheetWriterTests
 {
     [TestClass]
-    public class ExcelSpreadsheetWriterTests
+    public class MoveTests
     {
         private ExcelSpreadsheetWriter _sut;
         private Fixture _fixture;
@@ -26,47 +19,6 @@ namespace SpreadsheetWriter.EPPlus.UnitTests
             _fixture = new Fixture();
             _worksheet = ExcelTestBuilder.CreateExcelWorksheet();
             _sut = new ExcelSpreadsheetWriter(_worksheet);
-        }
-
-        [TestMethod]
-        public void Constructor_WithoutWorksheet_ThrowsException()
-        {
-            // Arrange
-            ExcelWorksheet worksheet = null;
-
-            // Act
-            Action action = () => new ExcelSpreadsheetWriter(worksheet);
-
-            // Assert
-            action.Should().Throw<ArgumentNullException>();
-        }
-
-        [TestMethod]
-        public void Constructor_WithValidWorksheet_SetsCurrentCellToTopLeft()
-        {
-            // Arrange
-            var worksheet = ExcelTestBuilder.CreateExcelWorksheet();
-
-            // Act
-            _sut = new ExcelSpreadsheetWriter(worksheet);
-
-            // Assert
-            _sut.CurrentPosition.X.Should().Be(1);
-            _sut.CurrentPosition.Y.Should().Be(1);
-        }
-
-        [TestMethod]
-        public void GetCellRange_WithValidPoint_ReturnsMatchingExcelRange()
-        {
-            // Arrange
-            var point = new Point(_fixture.Create<short>(), _fixture.Create<short>());
-
-            // Act
-            var result = _sut.GetCellRange(point);
-
-            // Assert
-            result.Should().NotBeNull();
-            result.Address.Should().Contain(point.Y.ToString());
         }
 
         [TestMethod]
@@ -278,127 +230,26 @@ namespace SpreadsheetWriter.EPPlus.UnitTests
         }
 
         [TestMethod]
-        public void Write_WithValidValue_ReturnsInstanceOfSut()
+        public void NewLine_WithValidWriter_ReturnsInstanceOfSut()
         {
             // Arrange
-            string value = _fixture.Create<string>();
-
             // Act
-            ISpreadsheetWriter result = _sut.Write(value);
+            var result = _sut.NewLine();
 
             // Assert
             result.Should().Be(_sut);
         }
 
         [TestMethod]
-        public void Write_WithStringValue_InsertsStringInCurrentCell()
+        public void NewLine_WithValidWriter_MovesOneRowDownAndAllTheWayLeft()
         {
             // Arrange
-            string expectedValue = _fixture.Create<string>();
-
             // Act
-            _sut.Write(expectedValue);
+            _sut.NewLine();
 
             // Assert
-            var cell = _worksheet.GetCell(_sut.CurrentPosition);
-            cell.Value.Should().Be(expectedValue);
-        }
-
-        [TestMethod]
-        public void Write_WithDecimalValue_InsertsDecimalInCurrentCell()
-        {
-            // Arrange
-            decimal expectedValue = _fixture.Create<decimal>();
-
-            // Act
-            _sut.Write(expectedValue);
-
-            // Assert
-            var cell = _worksheet.GetCell(_sut.CurrentPosition);
-            cell.Value.Should().Be(expectedValue);
-        }
-
-
-        [TestMethod]
-        public void Write_WithNull_ClearsExistingValueInCurrentCell()
-        {
-            // Arrange
-            string expectedValue = null;
-            _sut.Write("existing value");
-
-            // Act
-            _sut.Write(expectedValue);
-
-            // Assert
-            var cell = _worksheet.GetCell(_sut.CurrentPosition);
-            cell.Value.Should().Be(expectedValue);
-        }
-
-        [TestMethod]
-        public void PlaceStandardFormula_WithValidValue_ReturnsInstanceOfSut()
-        {
-            // Arrange
-            var startPosition = new Point(_fixture.Create<short>(), _fixture.Create<short>());
-            var endPosition = new Point(_fixture.Create<short>(), _fixture.Create<short>());
-            var formulaType = _fixture.Create<FormulaType>();
-
-            // Act
-            ISpreadsheetWriter result = _sut.PlaceStandardFormula(startPosition, endPosition, formulaType);
-
-            // Assert
-            result.Should().Be(_sut);
-        }
-
-        [TestMethod]
-        public void PlaceStandardFormula_WithValidPoints_PlacesFormulaInCurrentCell()
-        {
-            // Arrange
-            var startPosition = new Point(_fixture.Create<short>(), _fixture.Create<short>());
-            var endPosition = new Point(_fixture.Create<short>(), _fixture.Create<short>());
-            var formulaType = _fixture.Create<FormulaType>();
-
-            // Act
-            _sut.PlaceStandardFormula(startPosition, endPosition, formulaType);
-
-            // Assert
-            var cell = _worksheet.GetCell(_sut.CurrentPosition);
-            var startAddress = $"{ExcelColumnUtility.GetExcelColumnName(startPosition.X)}{startPosition.Y}";
-            var endAddress = $"{ExcelColumnUtility.GetExcelColumnName(endPosition.X)}{endPosition.Y}";
-
-            cell.Formula.Should().Contain($"={formulaType}({startAddress}:{endAddress})");
-        }
-
-        [TestMethod]
-        public void PlaceCustomFormula_WithValidValue_ReturnsInstanceOfSut()
-        {
-            // Arrange
-            var expectedFormula = _fixture.Create<string>();
-            var formulaBuilder = new Mock<IFormulaBuilder>();
-            formulaBuilder.Setup(x => x.Build())
-                .Returns(expectedFormula);
-
-            // Act
-            ISpreadsheetWriter result = _sut.PlaceCustomFormula(formulaBuilder.Object);
-
-            // Assert
-            result.Should().Be(_sut);
-        }
-
-        [TestMethod]
-        public void PlaceCustomFormula_WithFormulaBuilder_PlacesFormulaToCurrentCell()
-        {
-            // Arrange
-            var expectedFormula = _fixture.Create<string>();
-            var formulaBuilder = new Mock<IFormulaBuilder>();
-            formulaBuilder.Setup(x => x.Build())
-                .Returns(expectedFormula);
-
-            // Act
-            ISpreadsheetWriter result = _sut.PlaceCustomFormula(formulaBuilder.Object);
-
-            // Assert
-            var cell = _worksheet.GetCell(_sut.CurrentPosition);
-            cell.Formula.Should().Be(expectedFormula);
+            _sut.CurrentPosition.X.Should().Be(1);
+            _sut.CurrentPosition.Y.Should().Be(2);
         }
     }
 }
