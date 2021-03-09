@@ -4,6 +4,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
 using SpreadsheetWriter.Abstractions;
+using SpreadsheetWriter.Abstractions.Styling;
 using SpreadsheetWriter.EPPlus.Extensions;
 using SpreadsheetWriter.EPPlus.UnitTests.Builders;
 
@@ -249,6 +250,29 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.ExcelSpreadsheetWriterTests
             _sut.Write(string.Empty);
             var cell = _worksheet.GetCell(_sut.CurrentPosition);
             cell.Style.TextRotation.Should().Be(0);
+        }
+
+        [TestMethod]
+        public void ResetStyling_WithConfiguredBorderStyle_ResetsBorderStyleOfExcelRange()
+        {
+            // Arrange
+            BorderStyle borderStyle = _fixture.Create<BorderStyle>();
+            BorderDirection borderDirection = _fixture.Create<BorderDirection>();
+            _sut.SetBorder(borderStyle, borderDirection);
+
+            // Act
+            _sut.ResetStyling();
+
+            // Assert
+            _sut.Write(string.Empty);
+            var cell = _worksheet.GetCell(_sut.CurrentPosition);
+            cell.Style.Border.Bottom.Style.Should().Be(BorderStyle.None);
+            cell.Style.Border.Top.Style.Should().Be(BorderStyle.None);
+            cell.Style.Border.Left.Style.Should().Be(BorderStyle.None);
+            cell.Style.Border.Right.Style.Should().Be(BorderStyle.None);
+            cell.Style.Border.Diagonal.Style.Should().Be(BorderStyle.None);
+            cell.Style.Border.DiagonalDown.Should().BeFalse();
+            cell.Style.Border.DiagonalUp.Should().BeFalse();
         }
     }
 }

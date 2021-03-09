@@ -5,12 +5,13 @@
     /// </summary>
     public enum BorderDirection
     {
-        Left = 0,
-        Right = 1,
-        Top = 2,
-        Bottom = 3,
-        Diagonal = 4,
-        DiagonalUp = 5,
-        DiagonalDown = 6
+        None = 0,
+        Left = 1,
+        Right = 2,
+        Top = 3,
+        Bottom = 4,
+        Diagonal = 5,
+        DiagonalUp = 6,
+        DiagonalDown = 7
     }
 }

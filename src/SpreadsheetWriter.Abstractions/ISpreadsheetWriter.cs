@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using SpreadsheetWriter.Abstractions.Formula;
+using SpreadsheetWriter.Abstractions.Styling;
 
 namespace SpreadsheetWriter.Abstractions
 {
@@ -87,6 +88,11 @@ namespace SpreadsheetWriter.Abstractions
         /// Set the format for future inserts to a specified format.
         /// </summary>
         ISpreadsheetWriter SetFormat(string format);
+
+        /// <summary>
+        /// Set the border for future inserts to a specified style and direction.
+        /// </summary>
+        ISpreadsheetWriter SetBorder(BorderStyle borderStyle, BorderDirection borderDirection);
 
         /// <summary>
         /// Move the current selected cell to the start of one row below.

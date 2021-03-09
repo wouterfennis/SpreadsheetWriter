@@ -49,7 +49,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
         }
 
         [TestMethod]
-        public void SetBorder_WithBorderTop_SetStyleOnTopBorder()
+        public void SetBorder_WithDirectionBorderTop_SetStyleOnTopBorder()
         {
             // Arrange
             ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
@@ -63,7 +63,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
         }
 
         [TestMethod]
-        public void SetBorder_WithBorderLeft_SetStyleOnLeftBorder()
+        public void SetBorder_WithDirectionBorderLeft_SetStyleOnLeftBorder()
         {
             // Arrange
             ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
@@ -77,7 +77,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
         }
 
         [TestMethod]
-        public void SetBorder_WithBorderRight_SetStyleOnRightBorder()
+        public void SetBorder_WithDirectionBorderRight_SetStyleOnRightBorder()
         {
             // Arrange
             ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
@@ -91,7 +91,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
         }
 
         [TestMethod]
-        public void SetBorder_WithBottom_SetStyleOnBottomBorder()
+        public void SetBorder_WithDirectionBottom_SetStyleOnBottomBorder()
         {
             // Arrange
             ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
@@ -105,7 +105,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
         }
 
         [TestMethod]
-        public void SetBorder_WithDiagonal_SetStyleOnDiagonalBorder()
+        public void SetBorder_WithDirectionDiagonal_SetStyleOnDiagonalBorder()
         {
             // Arrange
             ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
@@ -119,7 +119,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
         }
 
         [TestMethod]
-        public void SetBorder_WithDiagonalDown_SetStyleOnDiagnoalDownBorder()
+        public void SetBorder_WithDirectionDiagonalDown_SetStyleOnDiagonalDownBorder()
         {
             // Arrange
             ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
@@ -134,7 +134,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
         }
 
         [TestMethod]
-        public void SetBorder_WithDiagonalUp_SetStyleOnDiagonalUpBorder()
+        public void SetBorder_WithDirectionDiagonalUp_SetStyleOnDiagonalUpBorder()
         {
             // Arrange
             ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
@@ -146,6 +146,26 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
             // Assert
             excelRange.Style.Border.Diagonal.Style.Should().Be((ExcelBorderStyle)expectedBorderStyle);
             excelRange.Style.Border.DiagonalUp.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void SetBorder_WithDirectionNone_SetNoBorderStyling()
+        {
+            // Arrange
+            ExcelRange excelRange = ExcelTestBuilder.CreateExcelRange();
+            BorderStyle expectedBorderStyle = _fixture.Create<BorderStyle>();
+
+            // Act
+            excelRange.SetBorder(BorderDirection.None, expectedBorderStyle);
+
+            // Assert
+            excelRange.Style.Border.Top.Style.Should().Be(ExcelBorderStyle.None);
+            excelRange.Style.Border.Bottom.Style.Should().Be(ExcelBorderStyle.None);
+            excelRange.Style.Border.Left.Style.Should().Be(ExcelBorderStyle.None);
+            excelRange.Style.Border.Right.Style.Should().Be(ExcelBorderStyle.None);
+            excelRange.Style.Border.Diagonal.Style.Should().Be(ExcelBorderStyle.None);
+            excelRange.Style.Border.DiagonalUp.Should().BeFalse();
+            excelRange.Style.Border.DiagonalDown.Should().BeFalse();
         }
 
         [TestMethod]

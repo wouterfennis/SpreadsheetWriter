@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using SpreadsheetWriter.Abstractions.Formula;
+using SpreadsheetWriter.Abstractions.Styling;
 
 namespace SpreadsheetWriter.Abstractions
 {
@@ -10,6 +11,9 @@ namespace SpreadsheetWriter.Abstractions
         private const float DefaultFontSize = 11;
         private const bool DefaultIsFontBold = false;
         private const string DefaultFormat = "";
+        private const BorderStyle DefaultBorderStyle = BorderStyle.None;
+        private const BorderDirection DefaultBorderDirection = BorderDirection.None;
+
         private readonly Color DefaultBackgroundColor = Color.White;
         private readonly Color DefaultFontColor = Color.Black;
         private readonly int DefaultXPosition;
@@ -21,6 +25,8 @@ namespace SpreadsheetWriter.Abstractions
         protected bool IsCurrentFontBold;
         protected int CurrentTextRotation;
         protected string CurrentFormat;
+        protected BorderStyle CurrentBorderStyle;
+        protected BorderDirection CurrentBorderDirection;
 
         /// <summary>
         /// The position of the current selected Cell
@@ -148,6 +154,14 @@ namespace SpreadsheetWriter.Abstractions
         }
 
         /// <inheritdoc/>
+        public ISpreadsheetWriter SetBorder(BorderStyle borderStyle, BorderDirection borderDirection)
+        {
+            CurrentBorderStyle = borderStyle;
+            CurrentBorderDirection = borderDirection;
+            return this;
+        }
+
+        /// <inheritdoc/>
         public ISpreadsheetWriter NewLine()
         {
             CurrentPosition = new Point(DefaultXPosition, CurrentPosition.Y + 1);
@@ -163,6 +177,8 @@ namespace SpreadsheetWriter.Abstractions
             CurrentFontSize = DefaultFontSize;
             IsCurrentFontBold = DefaultIsFontBold;
             CurrentFormat = DefaultFormat;
+            CurrentBorderStyle = DefaultBorderStyle;
+            CurrentBorderDirection = DefaultBorderDirection;
 
             return this;
         }

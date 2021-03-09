@@ -58,6 +58,7 @@ namespace SpreadsheetWriter.EPPlus
             CurrentCell.SetFontSize(CurrentFontSize);
             CurrentCell.SetFontBold(IsCurrentFontBold);
             CurrentCell.SetFormat(CurrentFormat);
+            CurrentCell.SetBorder(CurrentBorderDirection, CurrentBorderStyle);
         }
 
         /// <inheritdoc/>

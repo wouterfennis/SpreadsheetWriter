@@ -54,6 +54,9 @@ namespace SpreadsheetWriter.EPPlus.Extensions
                     excelRange.Style.Border.Diagonal.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
                     excelRange.Style.Border.DiagonalDown = true;
                     break;
+                case BorderDirection.None:
+                    // No action.
+                    break;
                 default:
                     var exception = new InvalidOperationException(ExceptionMessages.UnknownBorderDirection);
                     exception.Data.Add(nameof(borderDirection), borderDirection);
