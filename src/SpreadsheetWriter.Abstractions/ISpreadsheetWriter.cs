@@ -92,7 +92,7 @@ namespace SpreadsheetWriter.Abstractions
         /// <summary>
         /// Set the border for future inserts to a specified style and direction.
         /// </summary>
-        ISpreadsheetWriter SetBorder(BorderStyle borderStyle, BorderDirection borderDirection);
+        ISpreadsheetWriter SetBorder(BorderStyle borderStyle, BorderDirection borderDirection, Color borderColor);
 
         /// <summary>
         /// Move the current selected cell to the start of one row below.

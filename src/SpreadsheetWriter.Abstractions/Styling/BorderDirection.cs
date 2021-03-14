@@ -12,6 +12,7 @@
         Bottom = 4,
         Diagonal = 5,
         DiagonalUp = 6,
-        DiagonalDown = 7
+        DiagonalDown = 7,
+        Around = 8
     }
 }

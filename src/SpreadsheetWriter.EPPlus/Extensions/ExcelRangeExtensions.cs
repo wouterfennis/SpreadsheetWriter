@@ -22,37 +22,56 @@ namespace SpreadsheetWriter.EPPlus.Extensions
         }
 
         /// <summary>
+        /// Set all the borders of the cell to the default values.
+        /// </summary>
+        /// <param name="excelRange"></param>
+        public static void SetDefaultCellBorder(this ExcelRange excelRange)
+        {
+            excelRange.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin, Color.LightGray);
+        }
+
+        /// <summary>
         /// Set the border of an <see cref="ExcelRange"/>.
         /// </summary>
-        public static void SetBorder(this ExcelRange excelRange, BorderDirection borderDirection, BorderStyle borderStyle)
+        public static void SetBorder(this ExcelRange excelRange, BorderDirection borderDirection, BorderStyle borderStyle, Color borderColor)
         {
             _ = excelRange?.Style?.Border ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
 
+            var mappedStyle = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
             switch (borderDirection)
             {
                 case BorderDirection.Left:
-                    excelRange.Style.Border.Left.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.Left.Style = mappedStyle;
+                    excelRange.Style.Border.Left.Color.SetColor(borderColor);
                     break;
                 case BorderDirection.Right:
-                    excelRange.Style.Border.Right.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
-
+                    excelRange.Style.Border.Right.Style = mappedStyle;
+                    excelRange.Style.Border.Right.Color.SetColor(borderColor);
                     break;
                 case BorderDirection.Top:
-                    excelRange.Style.Border.Top.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.Top.Style = mappedStyle;
+                    excelRange.Style.Border.Top.Color.SetColor(borderColor);
                     break;
                 case BorderDirection.Bottom:
-                    excelRange.Style.Border.Bottom.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.Bottom.Style = mappedStyle;
+                    excelRange.Style.Border.Bottom.Color.SetColor(borderColor);
                     break;
                 case BorderDirection.Diagonal:
-                    excelRange.Style.Border.Diagonal.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.Diagonal.Style = mappedStyle;
+                    excelRange.Style.Border.Diagonal.Color.SetColor(borderColor);
                     break;
                 case BorderDirection.DiagonalUp:
-                    excelRange.Style.Border.Diagonal.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.Diagonal.Style = mappedStyle;
+                    excelRange.Style.Border.Diagonal.Color.SetColor(borderColor);
                     excelRange.Style.Border.DiagonalUp = true;
                     break;
                 case BorderDirection.DiagonalDown:
-                    excelRange.Style.Border.Diagonal.Style = (OfficeOpenXml.Style.ExcelBorderStyle)borderStyle;
+                    excelRange.Style.Border.Diagonal.Style = mappedStyle;
+                    excelRange.Style.Border.Diagonal.Color.SetColor(borderColor);
                     excelRange.Style.Border.DiagonalDown = true;
+                    break;
+                case BorderDirection.Around:
+                    excelRange.SetBorderAround(mappedStyle, borderColor);
                     break;
                 case BorderDirection.None:
                     // No action.
@@ -62,6 +81,14 @@ namespace SpreadsheetWriter.EPPlus.Extensions
                     exception.Data.Add(nameof(borderDirection), borderDirection);
                     throw exception;
             }
+        }
+
+        /// <summary>
+        /// Shorthand for setting the border around.
+        /// </summary>
+        private static void SetBorderAround(this ExcelRange excelRange, OfficeOpenXml.Style.ExcelBorderStyle borderStyle, Color borderColor)
+        {
+            excelRange.Style.Border.BorderAround(borderStyle, borderColor);
         }
 
         /// <summary>

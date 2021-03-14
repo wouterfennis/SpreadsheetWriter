@@ -16,11 +16,13 @@ namespace SpreadsheetWriter.Abstractions
 
         private readonly Color DefaultBackgroundColor = Color.White;
         private readonly Color DefaultFontColor = Color.Black;
+        private readonly Color DefaultBorderColor = Color.LightGray;
         private readonly int DefaultXPosition;
         private readonly int DefaultYPosition;
 
         protected Color CurrentBackgroundColor;
         protected Color CurrentFontColor;
+        protected Color CurrentBorderColor;
         protected float CurrentFontSize;
         protected bool IsCurrentFontBold;
         protected int CurrentTextRotation;
@@ -154,10 +156,11 @@ namespace SpreadsheetWriter.Abstractions
         }
 
         /// <inheritdoc/>
-        public ISpreadsheetWriter SetBorder(BorderStyle borderStyle, BorderDirection borderDirection)
+        public ISpreadsheetWriter SetBorder(BorderStyle borderStyle, BorderDirection borderDirection, Color borderColor)
         {
             CurrentBorderStyle = borderStyle;
             CurrentBorderDirection = borderDirection;
+            CurrentBorderColor = borderColor;
             return this;
         }
 
@@ -173,6 +176,7 @@ namespace SpreadsheetWriter.Abstractions
         {
             CurrentBackgroundColor = DefaultBackgroundColor;
             CurrentFontColor = DefaultFontColor;
+            CurrentBorderColor = DefaultBorderColor;
             CurrentTextRotation = DefaultTextRotation;
             CurrentFontSize = DefaultFontSize;
             IsCurrentFontBold = DefaultIsFontBold;
