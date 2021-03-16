@@ -1,4 +1,6 @@
-﻿namespace SpreadsheetWriter.Abstractions.Formula
+﻿using SpreadsheetWriter.Abstractions.Cell;
+
+namespace SpreadsheetWriter.Abstractions.Formula
 {
     /// <summary>
     /// Interface to build a spreadsheet formula fluently.
@@ -8,7 +10,17 @@
         /// <summary>
         /// Add address of an cell to the formula.
         /// </summary>
-        IFormulaBuilder AddCellAddress(string cellAddress);
+        IFormulaBuilder AddCellAddress(ICellAddress cellAddress);
+
+        /// <summary>
+        /// Add the letter of an column to the formula.
+        /// </summary>
+        IFormulaBuilder AddCellColumnLetter(ColumnLetter columnLetter);
+
+        /// <summary>
+        /// Add row number to the formula.
+        /// </summary>
+        IFormulaBuilder AddRowNumber(RowNumber rowNumber);
 
         /// <summary>
         /// Add a closing parenthesis to the formula.

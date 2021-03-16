@@ -1,13 +1,13 @@
 ﻿using System;
 using OfficeOpenXml;
-using SpreadsheetWriter.Abstractions;
+using SpreadsheetWriter.Abstractions.Cell;
 
 namespace SpreadsheetWriter.EPPlus
 {
     /// <inheritdoc/>
     public class ExcelRangeWrapper : ICellRange
     {
-        ExcelRange _excelRange;
+        private readonly ExcelRange _excelRange;
 
         public ExcelRangeWrapper(ExcelRange excelRange)
         {
@@ -15,7 +15,7 @@ namespace SpreadsheetWriter.EPPlus
         }
 
         /// <inheritdoc/>
-        public string Address => _excelRange.Address;
+        public ICellAddress Address => CellAddress.Create(_excelRange.Address);
 
         /// <inheritdoc/>
         public string Value => (string)_excelRange.Value;

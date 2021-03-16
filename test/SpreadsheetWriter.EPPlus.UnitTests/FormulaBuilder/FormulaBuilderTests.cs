@@ -2,6 +2,7 @@
 using AutoFixture;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.Abstractions.Formula;
 
 namespace SpreadsheetWriter.EPPlus.UnitTests.Formula
@@ -23,7 +24,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Formula
         public void AddCellAddress_WithoutAddress_ThrowsException()
         {
             // Arrange
-            string address = null;
+            ICellAddress address = null;
 
             // Act
             Action action = () => _formulaBuilder.AddCellAddress(address);
@@ -36,14 +37,14 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Formula
         public void AddCellAddress_WithAddress_AddsAddressToFormula()
         {
             // Arrange
-            var expectedAddress = _fixture.Create<string>();
+            CellAddress expectedAddress = CellAddress.Create($"A{_fixture.Create<int>()}");
 
             // Act
             IFormulaBuilder result = _formulaBuilder.AddCellAddress(expectedAddress);
 
             // Assert
             var formula = result.Build();
-            formula.Should().Be(expectedAddress);
+            formula.Should().Be(expectedAddress.ToString());
         }
 
         [TestMethod]

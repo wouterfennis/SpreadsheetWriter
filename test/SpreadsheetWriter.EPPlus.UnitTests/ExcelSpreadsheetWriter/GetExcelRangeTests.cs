@@ -3,6 +3,7 @@ using AutoFixture;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
+using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.EPPlus.UnitTests.Builders;
 
 namespace SpreadsheetWriter.EPPlus.UnitTests.ExcelSpreadsheetWriterTests
@@ -29,11 +30,11 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.ExcelSpreadsheetWriterTests
             var point = new Point(_fixture.Create<short>(), _fixture.Create<short>());
 
             // Act
-            var result = _sut.GetCellRange(point);
+            ICellRange result = _sut.GetCellRange(point);
 
             // Assert
             result.Should().NotBeNull();
-            result.Address.Should().Contain(point.Y.ToString());
+            result.Address.ToString().Should().Contain(point.Y.ToString());
         }
     }
 }

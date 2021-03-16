@@ -1,5 +1,5 @@
 ﻿
-namespace SpreadsheetWriter.Abstractions
+namespace SpreadsheetWriter.Abstractions.Cell
 {
     /// <summary>
     /// Abstraction for an range of cells.
@@ -9,7 +9,7 @@ namespace SpreadsheetWriter.Abstractions
         /// <summary>
         /// The address of the cell range.
         /// </summary>
-        string Address { get; }
+        ICellAddress Address { get; }
 
         /// <summary>
         /// The value of the cellRange

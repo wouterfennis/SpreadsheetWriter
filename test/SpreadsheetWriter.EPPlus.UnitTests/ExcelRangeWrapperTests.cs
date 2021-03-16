@@ -3,6 +3,7 @@ using AutoFixture;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
+using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.EPPlus.UnitTests.Builders;
 
 namespace SpreadsheetWriter.EPPlus.UnitTests
@@ -39,10 +40,10 @@ namespace SpreadsheetWriter.EPPlus.UnitTests
             var sut = new ExcelRangeWrapper(excelRange);
 
             // Act
-            string result = sut.Address;
+            ICellAddress result = sut.Address;
 
             // Assert
-            result.Should().Be(excelRange.Address);
+            result.ToString().Should().Be(excelRange.Address);
         }
 
         [TestMethod]

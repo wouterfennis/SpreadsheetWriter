@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.Abstractions.Formula;
 using SpreadsheetWriter.Abstractions.Styling;
 
