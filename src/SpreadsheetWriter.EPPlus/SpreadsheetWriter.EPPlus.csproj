@@ -11,7 +11,7 @@
 		<PackageTags>Spreadsheet, Excel, Openoffice, EPPlus</PackageTags>
 		<PackageReleaseNotes>Initial version</PackageReleaseNotes>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<Version>1.0.8</Version>
+		<Version>1.0.9</Version>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
