@@ -25,7 +25,7 @@ jobs:
     - name: Build implementation project
       run: dotnet build ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-restore --configuration Release
     - name: Restore dependencies test project
-      run: dotnet restore ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.UnitTests.EPPlus.csproj
+      run: dotnet restore ./src/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj
     - name: Build test project
       run: dotnet build ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --configuration Release
     - name: Run tests
