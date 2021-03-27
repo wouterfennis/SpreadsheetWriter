@@ -1,4 +1,4 @@
-name: Build Abstraction project
+name: Continuous Integration Abstraction project
 
 on:
   push:
@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj
     - name: Build
@@ -24,4 +26,4 @@ jobs:
     - name: Pack
       run: dotnet pack ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj --no-build --configuration Release
     - name: Publish
-      run: dotnet nuget push "**/SpreadsheetWriter.Abstraction.*.nupkg" --source "github"
+      run: dotnet nuget push "**/SpreadsheetWriter.Abstraction.*.nupkg" --source https://nuget.pkg.github.com/wouterfennis/index.json
