@@ -18,8 +18,6 @@ jobs:
       with:
         dotnet-version: 5.0.x
         source-url: https://nuget.pkg.github.com/wouterfennis/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj
     - name: Build
@@ -27,4 +25,4 @@ jobs:
     - name: Pack
       run: dotnet pack ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj --no-build --configuration Release
     - name: Publish
-      run: dotnet nuget push "./src/SpreadsheetWriter.Abstractions/bin/Release/SpreadsheetWriter.Abstractions.*.nupkg"
+      run: dotnet nuget push "./src/SpreadsheetWriter.Abstractions/bin/Release/SpreadsheetWriter.Abstractions.*.nupkg" --api-key ${{secrets.GITHUB_TOKEN}}
