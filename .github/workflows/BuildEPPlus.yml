@@ -31,7 +31,7 @@ jobs:
     - name: Upload test results
       uses: actions/upload-artifact@v2
       with:
-        name: dotnet-results-$GITHUB_RUN_ID
+        name: dotnet-results
         path: TestResults
     - name: Pack
       run: dotnet pack ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-build --configuration Release
