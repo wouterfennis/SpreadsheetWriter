@@ -26,4 +26,4 @@ jobs:
     - name: Pack
       run: dotnet pack ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj --no-build --configuration Release
     - name: Publish
-      run: dotnet nuget push "**/SpreadsheetWriter.Abstraction.*.nupkg" --source https://nuget.pkg.github.com/wouterfennis/index.json
+      run: dotnet nuget push "./src/SpreadsheetWriter.Abstractions/bin/Release/SpreadsheetWriter.Abstractions.*.nupkg" --source https://nuget.pkg.github.com/wouterfennis/index.json
