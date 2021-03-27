@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>An abstraction library to make SpreadsheetWriter open to new implementations and make it more testable on the client side.</Description>
     <PackageProjectUrl>https://github.com/wouterfennis/SpreadsheetWriter</PackageProjectUrl>
     <PackageTags>Spreadsheet, Excel, OpenOffice, EPPlus, Interface</PackageTags>
