@@ -26,15 +26,13 @@ jobs:
       run: dotnet build ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-restore --configuration Release
     - name: Restore dependencies test project
       run: dotnet restore ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj
-    - name: Build test project
-      run: dotnet build ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --configuration Release
     - name: Run tests
-      run: dotnet test ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --logger trx --results-directory "TestResults-$GITHUB_RUN_ID"
+      run: dotnet test ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --logger trx --results-directory "TestResults"
     - name: Upload test results
       uses: actions/upload-artifact@v2
       with:
         name: dotnet-results-$GITHUB_RUN_ID
-        path: TestResults-$GITHUB_RUN_ID
+        path: TestResults
     - name: Pack
       run: dotnet pack ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-build --configuration Release
     - name: Publish
