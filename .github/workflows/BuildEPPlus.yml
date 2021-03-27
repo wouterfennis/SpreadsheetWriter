@@ -21,7 +21,7 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Restore dependencies
-      run: dotnet restore ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj
+      run: dotnet restore
     - name: Build implementation project
       run: dotnet build ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-restore --configuration Release
     - name: Build test project
