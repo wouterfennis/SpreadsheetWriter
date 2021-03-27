@@ -20,4 +20,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj
     - name: Build
-      run: dotnet build ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj --no-restore
+      run: dotnet build ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj --no-restore --configuration Release
+    - name: Pack
+      run: dotnet pack --no-build
+    - name: Publish
+      run: dotnet nuget push "**/SpreadsheetWriter.Abstraction.*.nupkg" --source "github"
