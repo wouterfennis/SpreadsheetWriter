@@ -9,6 +9,20 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Cell
     public class CellAddressTests
     {
         [TestMethod]
+        public void Create_WithValidInput_CreatesCellAddress()
+        {
+            // Arrange
+            string input = "C1";
+
+            // Act
+            CellAddress result = CellAddress.Create(input);
+
+            // Assert
+            result.ColumnLetter.Value.Should().Be("C");
+            result.RowNumber.Value.Should().Be("1");
+        }
+
+        [TestMethod]
         public void Create_WithoutInput_ThrowsException()
         {
             // Arrange
@@ -22,15 +36,75 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Cell
         }
 
         [TestMethod]
-        //[DataRow("")]
-        //[DataRow("C")]
-        //[DataRow("1")]
-        //[DataRow("C/1")]
-        //[DataRow("C:1")]
-        //[DataRow("C-1")]
-        public void Create_WithInvalidInput_ThrowsException(string input)
+        public void Create_WithEmptyString_ThrowsException()
         {
-            // Arrange in datarow
+            // Arrange 
+            string input = "";
+
+            // Act
+            Action action = () => CellAddress.Create(input);
+
+            // Assert
+            action.Should().Throw<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void Create_WithOnlyColumn_ThrowsException()
+        {
+            // Arrange 
+            string input = "C";
+
+            // Act
+            Action action = () => CellAddress.Create(input);
+
+            // Assert
+            action.Should().Throw<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void Create_WithOnlyRow_ThrowsException()
+        {
+            // Arrange 
+            string input = "1";
+
+            // Act
+            Action action = () => CellAddress.Create(input);
+
+            // Assert
+            action.Should().Throw<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void Create_WithInvalidDivider_ThrowsException()
+        {
+            // Arrange 
+            string input = "C/1";
+
+            // Act
+            Action action = () => CellAddress.Create(input);
+
+            // Assert
+            action.Should().Throw<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void Create_WithInvalidDivider2_ThrowsException()
+        {
+            // Arrange 
+            string input = "C-1";
+
+            // Act
+            Action action = () => CellAddress.Create(input);
+
+            // Assert
+            action.Should().Throw<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        public void Create_WithInvalidDivider3_ThrowsException()
+        {
+            // Arrange 
+            string input = "C:1";
 
             // Act
             Action action = () => CellAddress.Create(input);

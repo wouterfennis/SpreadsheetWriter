@@ -34,7 +34,8 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.ExcelSpreadsheetWriterTests
 
             // Assert
             result.Should().NotBeNull();
-            result.Address.ToString().Should().Contain(point.Y.ToString());
+            string actualAddressString = result.Address.ToString();
+            actualAddressString.Should().Contain(point.Y.ToString());
         }
     }
 }

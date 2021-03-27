@@ -22,10 +22,12 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj
-    - name: Build
+    - name: Build implementation project
       run: dotnet build ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-restore --configuration Release
-    - name: Test with dotnet
-      run: dotnet test ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --logger trx --results-directory "TestResults-$GITHUB_RUN_ID"
+    - name: Build test project
+      run: dotnet build ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --configuration Release
+    - name: Run tests
+      run: dotnet test ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --logger trx --results-directory "TestResults-$GITHUB_RUN_ID"
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v2
       with:

@@ -8,7 +8,7 @@ namespace SpreadsheetWriter.Abstractions.Cell
     /// </summary>
     public class CellAddress : ICellAddress
     {
-        private const string CellAddressRegex = @"^([a-zA-Z]+)([1-9]+)$";
+        private const string CellAddressRegex = @"^([a-zA-Z]+)([0-9]+)$";
 
         /// <summary>
         /// The letter to state the column identifier.
@@ -46,7 +46,9 @@ namespace SpreadsheetWriter.Abstractions.Cell
                 string rowNumber = match.Groups[2].Value;
                 return new CellAddress(columnLetter, rowNumber);
             }
-            throw new InvalidOperationException("No valid input");
+            var exception = new InvalidOperationException("No valid input");
+            exception.Data.Add(nameof(cellAddress), cellAddress);
+            throw exception;
         }
     }
 }
