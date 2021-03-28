@@ -1,8 +1,6 @@
-name: Continuous Integration EPPlus project
+name: Continuous Integration Pull Request
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -27,13 +25,6 @@ jobs:
     - name: Restore dependencies test project
       run: dotnet restore ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj
     - name: Run tests
-      run: dotnet test ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --logger trx --results-directory "TestResults"
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
-      with:
-        name: dotnet-results
-        path: TestResults
+      run: dotnet test ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore
     - name: Pack
       run: dotnet pack ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-build --configuration Release
-    - name: Publish
-      run: dotnet nuget push "./src/SpreadsheetWriter.EPPlus/bin/Release/SpreadsheetWriter.EPPlus.*.nupkg" --source https://nuget.pkg.github.com/wouterfennis/index.json --api-key ${{secrets.GITHUB_TOKEN}} --skip-duplicate

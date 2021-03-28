@@ -1,0 +1,38 @@
+name: Continuous Integration Main
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        source-url: https://nuget.pkg.github.com/wouterfennis/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Restore dependencies implementation project
+      run: dotnet restore ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj
+    - name: Build implementation project
+      run: dotnet build ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-restore --configuration Release
+    - name: Restore dependencies test project
+      run: dotnet restore ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj
+    - name: Run tests
+      run: dotnet test ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore --logger trx --results-directory "TestResults"
+    - name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v5.3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Pack
+      run: dotnet pack ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-build --configuration Release -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
+    - name: Publish
+      run: dotnet nuget push "./src/SpreadsheetWriter.EPPlus/bin/Release/SpreadsheetWriter.EPPlus.*.nupkg" --source https://nuget.pkg.github.com/wouterfennis/index.json --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+
