@@ -1,7 +1,7 @@
-﻿using System;
-using System.Drawing;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using SpreadsheetWriter.Abstractions.Styling;
+using System;
+using System.Drawing;
 
 namespace SpreadsheetWriter.EPPlus.Extensions
 {
@@ -119,6 +119,27 @@ namespace SpreadsheetWriter.EPPlus.Extensions
             _ = excelRange?.Style?.Font ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
 
             excelRange.Style.Font.Bold = isActive;
+        }
+
+        /// <summary>
+        /// Set the horizontal alignment of an <see cref="ExcelRange"/>.
+        /// </summary>
+        public static void SetHorizontalAlignment(this ExcelRange excelRange, HorizontalAlignment horizontalAlignment)
+        {
+            _ = excelRange?.Style ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
+
+            var mappedAlignment = (OfficeOpenXml.Style.ExcelHorizontalAlignment)horizontalAlignment;
+            excelRange.Style.HorizontalAlignment = mappedAlignment;
+        }
+
+        /// <summary>
+        /// Set the vertical alignment of an <see cref="ExcelRange"/>.
+        /// </summary>
+        public static void SetVerticalAlignment(this ExcelRange excelRange, VerticalAlignment verticalAlignment)
+        {
+            _ = excelRange?.Style ?? throw new ArgumentException(ExceptionMessages.ExcelRangeNull);
+            var mappedAlignment = (OfficeOpenXml.Style.ExcelVerticalAlignment)verticalAlignment;
+            excelRange.Style.VerticalAlignment = mappedAlignment;
         }
 
         /// <summary>

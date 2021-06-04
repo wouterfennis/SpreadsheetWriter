@@ -1,10 +1,12 @@
-﻿using System;
-using System.Drawing;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
+using OfficeOpenXml.ConditionalFormatting.Contracts;
 using SpreadsheetWriter.Abstractions;
 using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.Abstractions.Formula;
 using SpreadsheetWriter.EPPlus.Extensions;
+using System;
+using System.Drawing;
+using System.Globalization;
 
 namespace SpreadsheetWriter.EPPlus
 {
@@ -59,8 +61,21 @@ namespace SpreadsheetWriter.EPPlus
             CurrentCell.SetFontSize(CurrentFontSize);
             CurrentCell.SetFontBold(IsCurrentFontBold);
             CurrentCell.SetFormat(CurrentFormat);
+            CurrentCell.SetHorizontalAlignment(CurrentHorizontalAlignment);
+            CurrentCell.SetVerticalAlignment(CurrentVerticalAlignment);
             CurrentCell.SetDefaultCellBorder();
             CurrentCell.SetBorder(CurrentBorderDirection, CurrentBorderStyle, CurrentBorderColor);
+        }
+
+        /// <summary>
+        /// Set the vertical alignment of an <see cref="ExcelRange"/>.
+        /// </summary>
+        public override ISpreadsheetWriter PlaceLessThanRule(double lessThanValue, Color fillColor)
+        {
+            IExcelConditionalFormattingLessThan rule = CurrentCell.ConditionalFormatting.AddLessThan();
+            rule.Formula = lessThanValue.ToString(CultureInfo.InvariantCulture);
+            rule.Style.Fill.BackgroundColor.Color = fillColor;
+            return this;
         }
 
         /// <inheritdoc/>
