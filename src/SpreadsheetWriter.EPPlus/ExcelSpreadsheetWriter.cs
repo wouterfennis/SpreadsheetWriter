@@ -49,11 +49,12 @@ namespace SpreadsheetWriter.EPPlus
 
         private void WriteInternal(object value)
         {
-            ApplyCellStyling();
+            ApplyStyling();
             CurrentCell.Value = value;
         }
 
-        private void ApplyCellStyling()
+        /// <inheritdoc/>
+        public override ISpreadsheetWriter ApplyStyling()
         {
             CurrentCell.SetBackgroundColor(CurrentBackgroundColor);
             CurrentCell.SetFontColor(CurrentFontColor);
@@ -65,6 +66,8 @@ namespace SpreadsheetWriter.EPPlus
             CurrentCell.SetVerticalAlignment(CurrentVerticalAlignment);
             CurrentCell.SetDefaultCellBorder();
             CurrentCell.SetBorder(CurrentBorderDirection, CurrentBorderStyle, CurrentBorderColor);
+
+            return this;
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace SpreadsheetWriter.EPPlus
         /// <inheritdoc/>
         public override ISpreadsheetWriter PlaceStandardFormula(Point startPosition, Point endPosition, FormulaType formulaType)
         {
-            ApplyCellStyling();
+            ApplyStyling();
 
             var startCell = _excelWorksheet.GetCell(startPosition);
             var endCell = _excelWorksheet.GetCell(endPosition);
@@ -96,7 +99,7 @@ namespace SpreadsheetWriter.EPPlus
         /// <inheritdoc/>
         public override ISpreadsheetWriter PlaceCustomFormula(IFormulaBuilder formulaBuilder)
         {
-            ApplyCellStyling();
+            ApplyStyling();
 
             var resultCell = _excelWorksheet.GetCell(CurrentPosition);
 

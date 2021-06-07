@@ -17,7 +17,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="EPPlus" Version="5.6.4" />
-		<PackageReference Include="SpreadsheetWriter.Abstractions" Version="0.0.6" />
+		<PackageReference Include="SpreadsheetWriter.Abstractions" Version="0.0.7" />
 	</ItemGroup>
 
 	<ItemGroup>
