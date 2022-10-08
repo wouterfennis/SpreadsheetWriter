@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Authors>Wouter Fennis</Authors>
 		<Company />
@@ -17,7 +17,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="EPPlus" Version="5.6.4" />
-		<PackageReference Include="SpreadsheetWriter.Abstractions" Version="0.0.7" />
+		<PackageReference Include="SpreadsheetWriter.Abstractions" Version="0.0.8" />
 	</ItemGroup>
 
 	<ItemGroup>
