@@ -19,6 +19,10 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Restore dependencies implementation project
+      run: dotnet restore ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj
+    - name: Build abstractions project
+      run: dotnet build ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj --no-restore --configuration Release
+    - name: Restore dependencies implementation project
       run: dotnet restore ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj
     - name: Build implementation project
       run: dotnet build ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-restore --configuration Release
