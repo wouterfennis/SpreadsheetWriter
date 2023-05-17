@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31005.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadsheetWriter.EPPlus", "src\SpreadsheetWriter.EPPlus\SpreadsheetWriter.EPPlus.csproj", "{4A0588AD-BA84-4195-AEB2-6E4BBB9D355B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadsheetWriter.EPPlus.UnitTests", "test\SpreadsheetWriter.EPPlus.UnitTests\SpreadsheetWriter.EPPlus.UnitTests.csproj", "{D78A559B-EC55-48C5-BE65-3C9FA1895456}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadsheetWriter.Abstractions", "src\SpreadsheetWriter.Abstractions\SpreadsheetWriter.Abstractions.csproj", "{AA28FE98-51D9-438A-8D97-7D1F6CC71520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D78A559B-EC55-48C5-BE65-3C9FA1895456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D78A559B-EC55-48C5-BE65-3C9FA1895456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D78A559B-EC55-48C5-BE65-3C9FA1895456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA28FE98-51D9-438A-8D97-7D1F6CC71520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA28FE98-51D9-438A-8D97-7D1F6CC71520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA28FE98-51D9-438A-8D97-7D1F6CC71520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA28FE98-51D9-438A-8D97-7D1F6CC71520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

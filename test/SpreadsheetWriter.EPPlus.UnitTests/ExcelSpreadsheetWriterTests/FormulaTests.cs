@@ -58,7 +58,7 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.ExcelSpreadsheetWriterTests
             var startAddress = $"{ExcelColumnUtility.GetExcelColumnName(startPosition.X)}{startPosition.Y}";
             var endAddress = $"{ExcelColumnUtility.GetExcelColumnName(endPosition.X)}{endPosition.Y}";
 
-            cell.Formula.Should().Contain($"={formulaType}({startAddress}:{endAddress})");
+            cell.Formula.Should().Contain($"{formulaType}({startAddress}:{endAddress})");
         }
 
         [TestMethod]

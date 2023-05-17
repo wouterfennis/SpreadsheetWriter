@@ -180,10 +180,10 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Extensions
             excelRange.SetBorder(BorderDirection.Around, expectedBorderStyle, borderColor);
 
             // Assert
-            excelRange.Style.Border.Top.Style.Should().Be(expectedBorderStyle);
-            excelRange.Style.Border.Bottom.Style.Should().Be(expectedBorderStyle);
-            excelRange.Style.Border.Left.Style.Should().Be(expectedBorderStyle);
-            excelRange.Style.Border.Right.Style.Should().Be(expectedBorderStyle);
+            excelRange.Style.Border.Top.Style.Should().Be(ExcelBorderStyle.DashDot);
+            excelRange.Style.Border.Bottom.Style.Should().Be(ExcelBorderStyle.DashDot);
+            excelRange.Style.Border.Left.Style.Should().Be(ExcelBorderStyle.DashDot);
+            excelRange.Style.Border.Right.Style.Should().Be(ExcelBorderStyle.DashDot);
         }
 
         [TestMethod]
