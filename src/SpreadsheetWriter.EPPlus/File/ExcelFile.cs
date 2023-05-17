@@ -13,12 +13,10 @@ namespace SpreadsheetWriter.EPPlus.File
         private ExcelPackage _excelPackage;
         private ISpreadsheetWriter _writer;
 
-        public FileInfo FileInfo { get; init; }
-
         public ExcelFile(string fileLocation, Metadata metadata)
         {
-            FileInfo = new FileInfo(fileLocation);
-            _excelPackage = new ExcelPackage(FileInfo);
+            var fileInfo = new FileInfo(fileLocation);
+            _excelPackage = new ExcelPackage(fileInfo);
             _excelPackage.Workbook.Properties.Author = metadata.Author;
             _excelPackage.Workbook.Properties.Title = metadata.Title;
             _excelPackage.Workbook.Properties.Subject = metadata.Subject;
