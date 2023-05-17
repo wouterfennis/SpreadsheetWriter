@@ -26,7 +26,7 @@ jobs:
       run: dotnet restore ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj
     - name: Run tests
       run: dotnet test ./test/SpreadsheetWriter.EPPlus.UnitTests/SpreadsheetWriter.EPPlus.UnitTests.csproj --no-restore
-    - name: Pack
+    - name: Pack SpreadsheetWriter.EPPlus
       run: dotnet pack ./src/SpreadsheetWriter.EPPlus/SpreadsheetWriter.EPPlus.csproj --no-build --configuration Release
-    - name: Pack
+    - name: Pack SpreadsheetWriter.Abstractions
       run: dotnet pack ./src/SpreadsheetWriter.Abstractions/SpreadsheetWriter.Abstractions.csproj --no-build --configuration Release
