@@ -50,6 +50,7 @@ namespace SpreadsheetWriter.EPPlus.File
             return new SaveResult
             {
                 IsSuccess = isSuccess,
+                FileInfo = _excelPackage.File,
                 Exception = exceptionDuringSave
             };
         }
