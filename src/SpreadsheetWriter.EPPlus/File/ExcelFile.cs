@@ -16,6 +16,7 @@ namespace SpreadsheetWriter.EPPlus.File
         public ExcelFile(string fileLocation, Metadata metadata)
         {
             var fileInfo = new FileInfo(fileLocation);
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             _excelPackage = new ExcelPackage(fileInfo);
             _excelPackage.Workbook.Properties.Author = metadata.Author;
             _excelPackage.Workbook.Properties.Title = metadata.Title;
