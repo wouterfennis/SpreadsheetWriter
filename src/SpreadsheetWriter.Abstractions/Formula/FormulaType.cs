@@ -13,6 +13,16 @@
         /// <summary>
         /// Calculates the average of the selected cells.
         /// </summary>
-        AVERAGE
+        AVERAGE,
+
+        /// <summary>
+        /// Calculates occurences of value
+        /// </summary>
+        COUNT,
+
+        /// <summary>
+        /// Calculates occurences of value, if it meets the condition.
+        /// </summary>
+        COUNTIF
     }
 }

@@ -160,6 +160,76 @@ namespace SpreadsheetWriter.EPPlus.UnitTests.Formula
         }
 
         [TestMethod]
+        public void AddFormulaType_WithoutPreviousActions_AddsFormulaTypeToFormula()
+        {
+            // Arrange
+            var expectedFormula = "COUNTIF";
+
+            // Act
+            IFormulaBuilder result = _formulaBuilder.AddFormulaType(FormulaType.COUNTIF);
+
+            // Assert
+            var formula = result.Build();
+            formula.Should().Be(expectedFormula);
+        }
+
+        [TestMethod]
+        public void AddColon_WithoutPreviousActions_AddsColonToFormula()
+        {
+            // Arrange
+            var expectedFormula = ":";
+
+            // Act
+            IFormulaBuilder result = _formulaBuilder.AddColon();
+
+            // Assert
+            var formula = result.Build();
+            formula.Should().Be(expectedFormula);
+        }
+
+        [TestMethod]
+        public void AddComma_WithoutPreviousActions_AddsColonToFormula()
+        {
+            // Arrange
+            var expectedFormula = ",";
+
+            // Act
+            IFormulaBuilder result = _formulaBuilder.AddComma();
+
+            // Assert
+            var formula = result.Build();
+            formula.Should().Be(expectedFormula);
+        }
+
+        [TestMethod]
+        public void AddCriteria_WithoutPreviousActions_AddsCriteriaToFormula()
+        {
+            // Arrange
+            var expectedFormula = "\"<1\"";
+
+            // Act
+            IFormulaBuilder result = _formulaBuilder.AddCriteria("<1");
+
+            // Assert
+            var formula = result.Build();
+            formula.Should().Be(expectedFormula);
+        }
+
+        [TestMethod]
+        public void AddValue_WithoutPreviousActions_AddsValueToFormula()
+        {
+            // Arrange
+            var expectedFormula = "1.09";
+
+            // a
+            IFormulaBuilder result = _formulaBuilder.AddValue(1.09);
+
+            // Assert
+            var formula = result.Build();
+            formula.Should().Be(expectedFormula);
+        }
+
+        [TestMethod]
         public void Build_WithoutPreviousActions_ReturnsEmptyString()
         {
             // Arrange
