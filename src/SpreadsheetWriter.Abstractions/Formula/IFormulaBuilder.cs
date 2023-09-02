@@ -63,6 +63,26 @@ namespace SpreadsheetWriter.Abstractions.Formula
         IFormulaBuilder AddConstantSign();
 
         /// <summary>
+        /// Add formula type to the formula.
+        /// </summary>
+        IFormulaBuilder AddFormulaType(FormulaType formulaType);
+
+        /// <summary>
+        /// Add colon to the formula.
+        /// </summary>
+        IFormulaBuilder AddColon();
+
+        /// <summary>
+        /// Add comma to the formula.
+        /// </summary>
+        IFormulaBuilder AddComma();
+
+        /// <summary>
+        /// Add criteria to the formula.
+        /// </summary>
+        IFormulaBuilder AddCriteria(string criteria);
+
+        /// <summary>
         /// Build the formula
         /// </summary>
         /// <returns>String containing the formula</returns>
