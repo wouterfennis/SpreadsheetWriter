@@ -83,6 +83,11 @@ namespace SpreadsheetWriter.Abstractions.Formula
         IFormulaBuilder AddCriteria(string criteria);
 
         /// <summary>
+        /// Add value to the formula.
+        /// </summary>
+        IFormulaBuilder AddValue(double value);
+
+        /// <summary>
         /// Build the formula
         /// </summary>
         /// <returns>String containing the formula</returns>
