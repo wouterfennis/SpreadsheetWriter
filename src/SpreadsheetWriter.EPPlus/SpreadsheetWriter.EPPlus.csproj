@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<Authors>Wouter Fennis</Authors>
 		<Company />
@@ -16,7 +16,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EPPlus" Version="6.2.4" />
+		<PackageReference Include="EPPlus" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
