@@ -1,6 +1,7 @@
 ﻿using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.Abstractions.Formula;
 using SpreadsheetWriter.Abstractions.Styling;
+using SpreadsheetWriter.Abstractions.View;
 using System.Drawing;
 
 namespace SpreadsheetWriter.Abstractions
@@ -19,6 +20,11 @@ namespace SpreadsheetWriter.Abstractions
         /// Get the cell range of an point in the spreadsheet.
         /// </summary>
         ICellRange GetCellRange(Point position);
+
+        /// <summary>
+        /// Get the view of the spreadsheet.
+        /// </summary>
+        IView GetView();
 
         /// <summary>
         /// Move one position up from the current selected cell.
