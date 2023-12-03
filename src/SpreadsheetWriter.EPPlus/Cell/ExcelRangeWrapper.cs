@@ -2,7 +2,7 @@
 using OfficeOpenXml;
 using SpreadsheetWriter.Abstractions.Cell;
 
-namespace SpreadsheetWriter.EPPlus
+namespace SpreadsheetWriter.EPPlus.Cell
 {
     /// <inheritdoc/>
     public class ExcelRangeWrapper : ICellRange
