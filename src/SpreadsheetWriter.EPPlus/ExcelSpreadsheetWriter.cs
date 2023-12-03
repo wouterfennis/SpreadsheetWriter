@@ -3,7 +3,10 @@ using OfficeOpenXml.ConditionalFormatting.Contracts;
 using SpreadsheetWriter.Abstractions;
 using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.Abstractions.Formula;
+using SpreadsheetWriter.Abstractions.View;
+using SpreadsheetWriter.EPPlus.Cell;
 using SpreadsheetWriter.EPPlus.Extensions;
+using SpreadsheetWriter.EPPlus.View;
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -31,6 +34,12 @@ namespace SpreadsheetWriter.EPPlus
         public override ICellRange GetCellRange(Point position)
         {
             return new ExcelRangeWrapper(_excelWorksheet.GetCell(position));
+        }
+
+        /// <inheritdoc/>
+        public override IView GetView()
+        {
+            return new ExcelViewWrapper(_excelWorksheet.View);
         }
 
         /// <inheritdoc/>

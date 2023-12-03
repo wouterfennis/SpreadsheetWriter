@@ -1,6 +1,7 @@
 ﻿using SpreadsheetWriter.Abstractions.Cell;
 using SpreadsheetWriter.Abstractions.Formula;
 using SpreadsheetWriter.Abstractions.Styling;
+using SpreadsheetWriter.Abstractions.View;
 using System.Drawing;
 
 namespace SpreadsheetWriter.Abstractions
@@ -49,6 +50,9 @@ namespace SpreadsheetWriter.Abstractions
 
         /// <inheritdoc/>
         public abstract ICellRange GetCellRange(Point position);
+
+        /// <inheritdoc/>
+        public abstract IView GetView();
 
         /// <inheritdoc/>
         public ISpreadsheetWriter MoveDown()

@@ -4,6 +4,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
 using SpreadsheetWriter.Abstractions.Cell;
+using SpreadsheetWriter.EPPlus.Cell;
 using SpreadsheetWriter.EPPlus.UnitTests.Builders;
 
 namespace SpreadsheetWriter.EPPlus.UnitTests
